@@ -4,10 +4,10 @@ import { createIncome, deleteIncome, getAllIncomes, getIncome, updateIncome } fr
 const incomeRoutes = Router()
 
 incomeRoutes.get('/', getAllIncomes);
-incomeRoutes.get('/id', getIncome);
+incomeRoutes.get('/:id', getIncome);
 incomeRoutes.post('/', createIncome);
-incomeRoutes.put('/', updateIncome);
-incomeRoutes.delete('/', deleteIncome);
+incomeRoutes.put('/:id', updateIncome);
+incomeRoutes.delete('/:id', deleteIncome);
 
 
 export default incomeRoutes;

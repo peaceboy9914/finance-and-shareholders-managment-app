@@ -1,19 +1,19 @@
-import { Share } from "../models/shareModel.js"
+import Income from '../models/incomeModel.js';
 
 export const getAllIncomes = async(req, res) => {
     try {
-        const shares = await Share.find();
-        if(!shares || []) {
+        const incomes = await Income.find();
+        if(!incomes || []) {
            return res.status(200).send({
-                message: "Not share created yet"
+                message: "No Income created yet"
             })
         }
         res.status(201).json({
-            shares,
+            incomes,
         })
     } catch (error) {
         res.status(200).send({
-            message: "Error getting share info"
+            message: "Error getting Income info"
         }),
         console.log(error)
     }
@@ -21,14 +21,14 @@ export const getAllIncomes = async(req, res) => {
 
 export const getIncome = async(req, res) => {
     try {
-        const share = await Share.findOne(req.params.id)
-        if(!share || []){
+        const income = await Income.findOne(req.params.id)
+        if(!income || []){
             return res.status(200).json({
                 message: "Share Detail Not Found",
             })
         }
         res.status(201).json({
-            share,
+            income,
         })
     } catch (error) {
         res.status(200).send({
@@ -40,22 +40,22 @@ export const getIncome = async(req, res) => {
 
 export const createIncome = async(req, res) => {
     try {
-        const share = await Share.create(req.body);
+        const income = await Income.create(req.body);
 
-        if(!share){
+        if(!income){
             return res.status(201).json({
-                message: 'Error creating share'
+                message: 'Error creating income'
             })
         }
     
         return res.status(200).json({
             success: true,
-            message: 'Share created successfully',
-            share,
+            message: 'Income created successfully',
+            income,
         })
     } catch (error) {
         return res.status(201).json({
-            message: `Error in create share controller ${error}`
+            message: `Error in create Income controller ${error}`
         })
     }
 
@@ -63,18 +63,18 @@ export const createIncome = async(req, res) => {
 
 export const updateIncome = async(req, res) => {
     try {
-        const share = await Share.findByIdAndUpdate(req.params.id, req.body)
-        if(!share){
-            return res.status(201).json({message: 'Error getting share'});
+        const income = await Income.findByIdAndUpdate(req.params.id, req.body)
+        if(!income){
+            return res.status(201).json({message: 'Error getting income'});
         }
         res.status(200).json({
             success: true,
-            message: 'Share info updated successfully',
-            share,
+            message: 'Income info updated successfully',
+            income,
         })
     } catch (error) {
         return res.status(201).json({
-            message: `Error updating user ${error}`
+            message: `Error updating income ${error}`
         })
     }
 
@@ -82,15 +82,15 @@ export const updateIncome = async(req, res) => {
 
 export const deleteIncome = async(req, res) => {
     try {
-        const share = await Share.findByIdAndDelete(req.params.id);
-        if(!share){
-            res.send({message: "error deleting share"})
+        const income = await Income.findByIdAndDelete(req.params.id);
+        if(!income){
+            res.send({message: "error deleting income"})
         }
         return res.status(200).json({
             success: true,
-            message: 'Share deleted successfully'
+            message: 'Income deleted successfully'
         })
     } catch (error) {
-        res.send({message: `Error deleting user: ${error}`})
+        res.send({message: `Error deleting income: ${error}`})
     }
 }
