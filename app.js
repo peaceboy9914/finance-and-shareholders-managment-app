@@ -6,6 +6,7 @@ import authRoutes from './routes/authRoutes.js';
 import shareRoutes from './routes/shareRoutes.js';
 import connectToDatabase from './config/database.js';
 import cors from 'cors';
+import { incomeRoutes } from './routes/incomeRoutes.js';
 const app = express();
 app.use(cors());
 config('.env')
@@ -16,6 +17,7 @@ app.use(express.urlencoded({extended: true}));
 app.use('/users', userRoutes);
 app.use('/share', shareRoutes);
 app.use('/auth', authRoutes);
+app.use('/income', incomeRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is Running on ${PORT}`);

@@ -3,12 +3,17 @@ import { body, validationResult } from "express-validator"
 export const createUserValidation = [
     body('name')
         .trim()
+        .escape()
         .isString().withMessage("Name must be string")
         .notEmpty().withMessage("Full name is required"),
     body('email')
+        .escape()
         .normalizeEmail()
         .isEmail().withMessage("Valid email is required"),
     body('password')
+        .isString()
+        .withMessage("Password must be string")
+        .length({min: 6}).withMessage("Password must be at least 6 characters long")
         .notEmpty().withMessage("Password field is required"),
     body('paystatus')
         .isString()
@@ -44,9 +49,11 @@ export const createUserValidation = [
 export const updateUserValidation = [
     body('name')
         .trim()
+        .escape()
         .isString().withMessage("Name must be string"),
     body('email')
         .normalizeEmail()
+        .escape()
         .isEmail().withMessage("Valid email is required"),
     body('phone')
         .isMobilePhone().withMessage("valid mobile phone is required"),
