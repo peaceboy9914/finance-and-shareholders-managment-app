@@ -3,12 +3,12 @@ import Income from '../models/incomeModel.js';
 export const getAllIncomes = async(req, res) => {
     try {
         const incomes = await Income.find();
-        if(!incomes || []) {
-           return res.status(200).send({
+        if(!incomes) {
+           return res.status(400).json({
                 message: "No Income created yet"
             })
         }
-        res.status(201).json({
+        res.status(200).json({
             incomes,
         })
     } catch (error) {
@@ -21,8 +21,8 @@ export const getAllIncomes = async(req, res) => {
 
 export const getIncome = async(req, res) => {
     try {
-        const income = await Income.findOne(req.params.id)
-        if(!income || []){
+        const income = await Income.findById(req.params.id)
+        if(!income){
             return res.status(200).json({
                 message: "Share Detail Not Found",
             })

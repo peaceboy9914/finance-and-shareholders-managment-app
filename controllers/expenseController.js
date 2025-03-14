@@ -3,12 +3,12 @@ import Expense from '../models/expenseModel.js';
 export const getAllExpenses = async(req, res) => {
     try {
         const expenses = await Expense.find();
-        if(!expenses || []) {
-           return res.status(200).send({
+        if(!expenses) {
+           return res.status(400).send({
                 message: "No Expense created yet"
             })
         }
-        res.status(201).json({
+        res.status(200).json({
             expenses,
         })
     } catch (error) {
@@ -21,8 +21,8 @@ export const getAllExpenses = async(req, res) => {
 
 export const getExpense = async(req, res) => {
     try {
-        const expense = await Expense.findOne(req.params.id)
-        if(!expense || []){
+        const expense = await Expense.findById(req.params.id)
+        if(!expense){
             return res.status(200).json({
                 message: "Expenese Detail Not Found",
             })

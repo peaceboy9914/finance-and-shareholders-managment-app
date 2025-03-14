@@ -13,7 +13,7 @@ export const createUserValidation = [
     body('password')
         .isString()
         .withMessage("Password must be string")
-        .length({min: 6}).withMessage("Password must be at least 6 characters long")
+        .isLength({min: 6}).withMessage("Password must be at least 6 characters long")
         .notEmpty().withMessage("Password field is required"),
     body('paystatus')
         .isString()
@@ -33,9 +33,9 @@ export const createUserValidation = [
     body('nationality')
         .notEmpty().withMessage("Nationality is required"),
     body('occupation')
-        .notEmpty.withMessage('Occupation is required'),
+        .notEmpty().withMessage('Occupation is required'),
     body('regdate')
-        .notEmpty.withMessage('Registration date is required'),
+        .notEmpty().withMessage('Registration date is required'),
 
     (req, res, next) => {
         const errors = validationResult(req);

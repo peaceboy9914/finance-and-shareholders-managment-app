@@ -6,7 +6,7 @@ import authRoutes from './routes/authRoutes.js';
 import shareRoutes from './routes/shareRoutes.js';
 import connectToDatabase from './config/database.js';
 import cors from 'cors';
-import { incomeRoutes } from './routes/incomeRoutes.js';
+import incomeRoutes from './routes/incomeRoutes.js';
 import expenseRoutes from './routes/expenseRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js';
 const app = express();

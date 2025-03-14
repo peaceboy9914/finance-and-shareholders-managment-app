@@ -3,26 +3,23 @@ import {IncomeCategory, ExpenseCategory} from '../models/categoryModel.js';
 export const getAllIncomeCategories = async(req, res) => {
     try {
         const categories = await IncomeCategory.find();
-        if(!categories || []) {
-           return res.status(200).send({
-                message: "No categories created yet"
+        if(!categories) {
+           return res.status(200).json({
+                message: "No Income categories created yet"
             })
         }
-        res.status(201).json({
+        res.status(200).json({
             categories,
         })
     } catch (error) {
-        res.status(200).send({
-            message: "Error getting categories info"
-        }),
         console.log(error)
     }
 }
 
 export const getIncomeCategory = async(req, res) => {
     try {
-        const category = await IncomeCategory.findOne(req.params.id)
-        if(!category || []){
+        const category = await IncomeCategory.findById(req.params.id)
+        if(!category){
             return res.status(200).json({
                 message: "Category Detail Not Found",
             })
@@ -99,7 +96,7 @@ export const deleteIncomeCategory = async(req, res) => {
 export const getAllExpenseCategories = async(req, res) => {
     try {
         const categories = await ExpenseCategory.find();
-        if(!categories || []) {
+        if(!categories) {
            return res.status(200).send({
                 message: "No categories created yet"
             })
@@ -117,8 +114,8 @@ export const getAllExpenseCategories = async(req, res) => {
 
 export const getExpenseCategory = async(req, res) => {
     try {
-        const category = await ExpenseCategory.findOne(req.params.id)
-        if(!category || []){
+        const category = await ExpenseCategory.findById(req.params.id)
+        if(!category){
             return res.status(200).json({
                 message: "Category Detail Not Found",
             })

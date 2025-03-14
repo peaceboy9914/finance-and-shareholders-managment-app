@@ -3,7 +3,7 @@ import { Share } from "../models/shareModel.js"
 export const getAllShares = async(req, res) => {
     try {
         const shares = await Share.find();
-        if(!shares || []) {
+        if(!shares) {
            return res.status(200).send({
                 message: "Not share created yet"
             })
@@ -21,8 +21,8 @@ export const getAllShares = async(req, res) => {
 
 export const getShare = async(req, res) => {
     try {
-        const share = await Share.findOne(req.params.id)
-        if(!share || []){
+        const share = await Share.findById(req.params.id)
+        if(!share){
             return res.status(200).json({
                 message: "Share Detail Not Found",
             })

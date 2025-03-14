@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { ExpenseCategory } from "./categoryModel";
+import { ExpenseCategory } from "./categoryModel.js";
 
 const expenseSchema = new mongoose.Schema({
     amount: {

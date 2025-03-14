@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { createExpenseCategory, createIncomeCategory, deleteExpenseCategory, deleteIncomeCategory, getAllExpenseCategories, getAllIncomeCategories, getExpenseCategory, getIncomeCategory, updateExpenseCategory, updateIncomeCategory } from "../controllers/categoryController";
+import { createExpenseCategory, createIncomeCategory, deleteExpenseCategory, deleteIncomeCategory, getAllExpenseCategories, getAllIncomeCategories, getExpenseCategory, getIncomeCategory, updateExpenseCategory, updateIncomeCategory } from "../controllers/categoryController.js";
 const categoryRoutes = Router()
 
 categoryRoutes.get('/income/', getAllIncomeCategories);
@@ -9,7 +9,7 @@ categoryRoutes.put('/income/:id', updateIncomeCategory);
 categoryRoutes.delete('/income/:id', deleteIncomeCategory);
 
 categoryRoutes.get('/expense/', getAllExpenseCategories);
-categoryRoutes.get('/expense/:id', getExpenseCategory);
+categoryRoutes.get('expense/:id', getExpenseCategory);
 categoryRoutes.post('/expense/', createExpenseCategory);
 categoryRoutes.put('/expense/:id', updateExpenseCategory);
 categoryRoutes.delete('/expense/:id', deleteExpenseCategory);
